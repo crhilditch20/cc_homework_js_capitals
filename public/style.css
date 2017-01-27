@@ -1,0 +1,14 @@
+body {
+  background-image: url('dotted-world-map.png');
+}
+
+div {
+  margin: 10px;
+  padding: 5px;
+}
+
+.text {
+  color:white;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+

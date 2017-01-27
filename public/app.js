@@ -1,6 +1,7 @@
 var countries;
 var capitals = [];
 var currentCapital;
+var guessedCountry;
 
 var makeRequest = function(url, callback){
   var request = new XMLHttpRequest();
@@ -53,13 +54,13 @@ var countryGuess = function(){
   var select = document.querySelector('#country-list');
   var div = document.querySelector('#guess-result');
   var userGuess = this.value;
-  var guessedCountry = getCountryObject(userGuess);
+  guessedCountry = getCountryObject(userGuess);
     if(currentCapital === guessedCountry.capital){
-      div.innerHTML = "Correct!";
+      div.innerHTML = "Correct! Here are some fun facts about " + guessedCountry.name;
     } else {
       div.innerHTML = "Naw, guess again";
     }
-}
+};
 
 var getCountryObject = function (value) {
   for(var country of countries){
@@ -67,6 +68,18 @@ var getCountryObject = function (value) {
       var countryObject = country;
     }
   } return countryObject;
+};
+
+var getCountryData = function(countryObject){
+  var list = document.querySelector('#country-data');
+  var population = document.createElement('li');
+    population.className = 'text';
+    population.innerHTML = "Population: " + countryObject.population;
+  var region = document.createElement('li');
+    region.className = 'text';
+    region.innerHTML = "Region: " + countryObject.region;
+  list.appendChild(population);
+  list.appendChild(region);
 };
 
 var app = function(){
