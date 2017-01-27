@@ -57,6 +57,7 @@ var countryGuess = function(){
   guessedCountry = getCountryObject(userGuess);
     if(currentCapital === guessedCountry.capital){
       div.innerHTML = "Correct! Here are some fun facts about " + guessedCountry.name;
+      getCountryData(guessedCountry);
     } else {
       div.innerHTML = "Naw, guess again";
     }
@@ -71,7 +72,9 @@ var getCountryObject = function (value) {
 };
 
 var getCountryData = function(countryObject){
-  var list = document.querySelector('#country-data');
+  var div = document.querySelector('#fun-facts');
+  var list = document.createElement('ul');
+    list.className = 'text';
   var population = document.createElement('li');
     population.className = 'text';
     population.innerHTML = "Population: " + countryObject.population;
@@ -80,6 +83,7 @@ var getCountryData = function(countryObject){
     region.innerHTML = "Region: " + countryObject.region;
   list.appendChild(population);
   list.appendChild(region);
+  div.appendChild(list);
 };
 
 var app = function(){
