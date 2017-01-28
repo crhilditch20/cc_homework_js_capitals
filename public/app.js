@@ -15,7 +15,6 @@ var app = function(){
   select.onchange = countryGuess;
 
   hiddenButton.onclick = unhideMap;
-
 };
 
 window.onload = app;

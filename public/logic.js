@@ -14,7 +14,6 @@ var requestComplete = function(){
   if(this.status !== 200) return;
   var jsonString = this.responseText; 
   countries = JSON.parse(jsonString);
-  // console.log(countries);
   populateList(countries);
   populateCapitals();
 };
@@ -23,8 +22,8 @@ var populateList = function(countries){
   var select = document.querySelector('#country-list');
     countries.forEach(function(country){
       var option = document.createElement('option'); 
-      option.innerText = country.name; 
-      option.value = country.name;
+        option.innerText = country.name; 
+        option.value = country.name;
       select.appendChild(option); 
     });
 };
@@ -33,22 +32,21 @@ var populateCapitals = function(){
   countries.forEach(function(country){
     capitals.push(country.capital);
   });
-  // console.log(capitals);
 };
 
 var displayCapital = function(){
-  clearPrevious();
+    clearPrevious();
   var div = document.querySelector('#display-capital');
   var limit = capitals.length;
   var index = getRandomNumber(limit);
-  currentCapital = capitals[index];
-  div.innerHTML = currentCapital;
+    currentCapital = capitals[index];
+    div.innerHTML = currentCapital;
 };
 
 var getRandomNumber = function(max) {
     min = 0;
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1));
+      return Math.floor(Math.random() * (max - min + 1));
   };
 
 var countryGuess = function(){
@@ -58,11 +56,10 @@ var countryGuess = function(){
   guessedCountry = getCountryObject(userGuess);
     if(currentCapital === guessedCountry.capital){
       div.innerHTML = "Correct! Here are some fun facts about " + guessedCountry.name;
-      getCountryData(guessedCountry);
+        getCountryData(guessedCountry);
       var hiddenButton = document.querySelector('#take-me-there');
       hiddenButton.style.visibility = 'visible';
-      displayCountryMap(guessedCountry);
-      var hiddenMap = document.querySelector('#map');
+        displayCountryMap(guessedCountry);
     } else {
       div.innerHTML = "Naw, guess again";
     }
@@ -89,9 +86,9 @@ var getCountryData = function(countryObject){
       var subregion = document.createElement('li');
         subregion.className = 'text';
         subregion.innerHTML = "Sub-region: " + countryObject.subregion;
-  list.appendChild(population);
-  list.appendChild(region);
-  list.appendChild(subregion);
+    list.appendChild(population);
+    list.appendChild(region);
+    list.appendChild(subregion);
   div.appendChild(list);
 };
 
@@ -100,22 +97,20 @@ var clearPrevious = function(){
   var funfacts = document.querySelector('#fun-facts');
   var hiddenButton = document.querySelector('#take-me-there');
   var hiddenMap = document.querySelector('#map');
-  previous.innerHTML = '';
-  funfacts.innerHTML = '';
-  hiddenButton.style.visibility = 'hidden';
-  hiddenMap.style.visibility = 'hidden';
+    previous.innerHTML = '';
+    funfacts.innerHTML = '';
+    hiddenButton.style.visibility = 'hidden';
+    hiddenMap.style.visibility = 'hidden';
 };
 
 var getCoords = function(countryObject){
-  var countryLat = countryObject.latlng[0];
-  var countryLng = countryObject.latlng[1];
-  var coords = {lat: countryLat, lng: countryLng};
-  return coords;
+ var coords = {lat: countryObject.latlng[0], lng: countryObject.latlng[1]};
+    return coords;
 };
 
 var makeMap = function(coords){
   var mapDiv = document.querySelector('#map');
-  var mainMap = new MapWrapper(mapDiv, coords, 6);
+  var map = new MapWrapper(mapDiv, coords, 6);
 };
 
 var displayCountryMap = function(countryObject){
@@ -124,6 +119,6 @@ var displayCountryMap = function(countryObject){
 
 var unhideMap = function(){
   var hiddenMap = document.querySelector('#map');
-  hiddenMap.style.visibility = 'visible';
+    hiddenMap.style.visibility = 'visible';
 };
 
