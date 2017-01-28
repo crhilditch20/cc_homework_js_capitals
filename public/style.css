@@ -17,3 +17,8 @@ div {
   padding: 3px;
 }
 
+#map {
+  height: 400px;
+  width: 400px;
+}
+
