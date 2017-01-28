@@ -96,8 +96,10 @@ var getCountryData = function(countryObject){
 var clearPrevious = function(){
   var previous = document.querySelector('#guess-result');
   var funfacts = document.querySelector('#fun-facts');
+  var hiddenButton = document.querySelector('#take-me-there');
   previous.innerHTML = '';
   funfacts.innerHTML = '';
+  hiddenButton.style.visibility = 'hidden';
 };
 
 var app = function(){
