@@ -37,6 +37,7 @@ var populateCapitals = function(){
 };
 
 var displayCapital = function(){
+  clearPrevious();
   var div = document.querySelector('#display-capital');
   var limit = capitals.length;
   var index = getRandomNumber(limit);
@@ -58,6 +59,8 @@ var countryGuess = function(){
     if(currentCapital === guessedCountry.capital){
       div.innerHTML = "Correct! Here are some fun facts about " + guessedCountry.name;
       getCountryData(guessedCountry);
+      var hiddenButton = document.querySelector('#take-me-there');
+      hiddenButton.style.visibility = 'visible';
     } else {
       div.innerHTML = "Naw, guess again";
     }
@@ -90,7 +93,17 @@ var getCountryData = function(countryObject){
   div.appendChild(list);
 };
 
+var clearPrevious = function(){
+  var previous = document.querySelector('#guess-result');
+  var funfacts = document.querySelector('#fun-facts');
+  previous.innerHTML = '';
+  funfacts.innerHTML = '';
+};
+
 var app = function(){
+  var hiddenButton = document.querySelector('#take-me-there');
+  hiddenButton.style.visibility = 'hidden';
+
   var url = 'https://restcountries.eu/rest/v1/all';
   makeRequest(url, requestComplete);
 
