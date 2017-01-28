@@ -81,8 +81,12 @@ var getCountryData = function(countryObject){
   var region = document.createElement('li');
     region.className = 'text';
     region.innerHTML = "Region: " + countryObject.region;
+  var subregion = document.createElement('li');
+    subregion.className = 'text';
+    subregion.innerHTML = "Sub-region: " + countryObject.subregion;
   list.appendChild(population);
   list.appendChild(region);
+  list.appendChild(subregion);
   div.appendChild(list);
 };
 
